@@ -1,7 +1,4 @@
-import { useState } from "react";
-
-export const SearchPanel = ({users, param, setParam}) => {
-
+export const SearchPanel = ({ users, param, setParam }) => {
   return (
     <form action="">
       <div>
