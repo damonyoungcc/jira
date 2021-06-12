@@ -13,7 +13,7 @@ export const SearchPanel = ({ users, param, setParam }) => {
         >
           <option value="">负责人</option>
           {users.map((user) => (
-            <option value={user.id}>{user.name}</option>
+            <option value={user.id} key={user.id}>{user.name}</option>
           ))}
         </select>
       </div>
