@@ -22,7 +22,7 @@ export const useMount = (callback: () => void) => {
   }, []);
 };
 
-export const useDebounce = (value: any, delay?: number) => {
+export const useDebounce = <T>(value: T, delay?: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
     // 在value变化后，设置一个定时器
@@ -31,4 +31,18 @@ export const useDebounce = (value: any, delay?: number) => {
     return () => clearTimeout(timeout);
   }, [value, delay]);
   return debouncedValue;
+};
+
+export const useArray = <T>(initialArray: T[]) => {
+  const [value, setValue] = useState(initialArray);
+  return {
+    value,
+    clear: () => setValue([]),
+    removeIndex: (index: number) => {
+      const copy = [...value];
+      copy.splice(index, 1);
+      setValue(copy);
+    },
+    add: (item: T) => setValue([...value, item]),
+  };
 };
