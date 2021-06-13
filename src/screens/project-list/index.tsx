@@ -17,13 +17,13 @@ export const ProjectListScreen = () => {
   const debouncedParam = useDebounce(param, 500);
 
   useEffect(() => {
-    fetch(`${apiURL}/projects?${qs.stringify(cleanObject(debouncedParam))}`).then(
-      async (response) => {
-        if (response.ok) {
-          setList(await response.json());
-        }
+    fetch(
+      `${apiURL}/projects?${qs.stringify(cleanObject(debouncedParam))}`
+    ).then(async (response) => {
+      if (response.ok) {
+        setList(await response.json());
       }
-    );
+    });
   }, [debouncedParam]);
 
   useMount(() => {
