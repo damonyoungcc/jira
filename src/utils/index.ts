@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const cleanObject = (object: { [k: string]: unknown }) => {
   const result = { ...object };
@@ -45,4 +45,22 @@ export const useArray = <T>(initialArray: T[]) => {
     },
     add: (item: T) => setValue([...value, item]),
   };
+};
+
+export const useDocumentTitle = (
+  title: string,
+  keepOnUmmount: boolean = true
+) => {
+  const oldTitle = useRef(document.title).current;
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
+  useEffect(() => {
+    return () => {
+      if (!keepOnUmmount) {
+        document.title = oldTitle;
+      }
+    };
+  }, [oldTitle, keepOnUmmount]);
 };
