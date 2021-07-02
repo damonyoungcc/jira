@@ -11,6 +11,7 @@ import {
   Routes,
   BrowserRouter as Router,
 } from "react-router-dom";
+import { ProjectScreen } from "screens/project";
 
 /**
  * grid 和 flex 各自的应用场景
@@ -32,6 +33,10 @@ export const AuthenticatedApp = () => {
         <Router>
           <Routes>
             <Route path={"/projects"} element={<ProjectListScreen />} />
+            <Route
+              path={"/projects/:projectId/*"}
+              element={<ProjectScreen />}
+            />
           </Routes>
         </Router>
       </Main>
