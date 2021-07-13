@@ -25,6 +25,8 @@ export const useAsync = <T>(
     ...defaultInitialState,
     ...initialState,
   });
+  // useState是惰性初始化
+  const [retry, setRetry] = useState(() => () => {});
 
   const setData = (data: T) =>
     setState({
@@ -40,10 +42,18 @@ export const useAsync = <T>(
       data: null,
     });
 
-  const run = (promise: Promise<T>) => {
+  const run = (
+    promise: Promise<T>,
+    runConfig?: { retry: () => Promise<T> }
+  ) => {
     if (!promise || !promise.then) {
       throw new Error("请传入Promise类型数据");
     }
+    setRetry(() => () => {
+      if (runConfig?.retry) {
+        run(runConfig?.retry(), runConfig);
+      }
+    });
     setState({ ...state, stat: "loading" });
     return promise
       .then((data) => {
@@ -67,6 +77,8 @@ export const useAsync = <T>(
     run,
     setData,
     setError,
+    // retry 被调用时，重新跑一下run
+    retry,
     ...state,
   };
 };
