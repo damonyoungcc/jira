@@ -15,6 +15,7 @@ export class ErrorBoundary extends React.Component<
     return { error };
   }
 
+  // test
   render() {
     const { error } = this.state;
     const { fallbackRender, children } = this.props;
