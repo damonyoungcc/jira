@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { loadServer, DevTools } from "jira-dev-tool";
+import { DevTools, loadServer } from "jira-dev-tool";
 import "antd/dist/antd.less";
 import { AppProvider } from "context";
 

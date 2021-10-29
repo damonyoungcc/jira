@@ -25,8 +25,8 @@ export const RegisterScreen = ({
     }
     try {
       await run(register(values));
-    } catch (error) {
-      onError(error);
+    } catch (e: any) {
+      onError(e);
     }
   };
 
