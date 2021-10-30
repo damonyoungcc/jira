@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@types/qs": "^6.9.7",
     "eslint-config-prettier": "^8.3.0",
     "husky": ">=6",
     "lint-staged": ">=10",
