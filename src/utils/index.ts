@@ -18,6 +18,7 @@ export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
+    // eslint-disable-next-line
   }, []);
 };
 
