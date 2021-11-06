@@ -4,8 +4,8 @@ import { List } from "screens/project-list/list";
 import { useDebounce } from "../../utils";
 import styled from "@emotion/styled";
 import { Typography } from "antd";
-import { useProject } from "utils/project";
-import { useUser } from "utils/user";
+import { useProjects } from "utils/project";
+import { useUsers } from "utils/user";
 
 // 使用 JS 的同学，大部分的错误都是在 runtime(运行时) 的时候发现的
 // 我们希望，在静态代码中，就能找到其中的一些错误 -> 强类型
@@ -17,8 +17,8 @@ export const ProjectListScreen = () => {
   });
   const debouncedParam = useDebounce(param, 200);
 
-  const { data: list, isLoading, error } = useProject(debouncedParam);
-  const { data: users } = useUser();
+  const { data: list, isLoading, error } = useProjects(debouncedParam);
+  const { data: users } = useUsers();
 
   return (
     <Container>

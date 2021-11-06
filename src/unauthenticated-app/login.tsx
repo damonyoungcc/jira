@@ -2,12 +2,25 @@ import React from "react";
 import { Button, Form, Input } from "antd";
 
 import { useAuth } from "context/auth-context";
+import { useAsync } from "utils/use-async";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({
+  onError,
+}: {
+  onError: (error: Error | null) => void;
+}) => {
   const { login } = useAuth();
+  const { run, isLoading } = useAsync(undefined, { throwError: true });
 
-  const handleSubmit = (values: { username: string; password: string }) => {
-    login(values);
+  const handleSubmit = async (values: {
+    username: string;
+    password: string;
+  }) => {
+    try {
+      await run(login(values));
+    } catch (e) {
+      onError(e as Error);
+    }
   };
 
   return (
@@ -25,7 +38,7 @@ export const LoginScreen = () => {
         <Input placeholder={"密码"} type="password" id={"password"} />
       </Form.Item>
       <Form.Item>
-        <Button htmlType={"submit"} type={"primary"}>
+        <Button loading={isLoading} htmlType={"submit"} type={"primary"}>
           登录
         </Button>
       </Form.Item>

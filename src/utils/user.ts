@@ -4,7 +4,7 @@ import { cleanObject } from "utils";
 import { useHttp } from "utils/http";
 import { useAsync } from "utils/use-async";
 
-export const useUser = (param?: Partial<User>) => {
+export const useUsers = (param?: Partial<User>) => {
   const { run, ...result } = useAsync<User[]>();
   const client = useHttp();
   useEffect(() => {
