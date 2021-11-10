@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const isVoid = (value: unknown) =>
   value === undefined || value === null || value === "";
@@ -49,8 +49,9 @@ export const useDocumentTitle = (
   title: string,
   keepOnUnmount: boolean = true
 ) => {
-  const oldTitle = document.title;
-  console.log("渲染时的oldTitle:", oldTitle);
+  const oldTitle = useRef(document.title).current;
+  // 页面加载时： oldTitle === 就title HTML中默认的title
+  // 加载后: oldTitle === 新title
   useEffect(() => {
     document.title = title;
   }, [title]);
@@ -58,9 +59,9 @@ export const useDocumentTitle = (
   useEffect(() => {
     return () => {
       if (!keepOnUnmount) {
-        console.log("卸载时的oldTitle:", oldTitle);
+        // 如果不指定依赖，读到的就是旧title
         document.title = oldTitle;
       }
     };
-  }, []);
+  }, [keepOnUnmount, oldTitle]);
 };
