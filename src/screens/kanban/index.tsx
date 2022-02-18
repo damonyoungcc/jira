@@ -1,5 +1,17 @@
-import React from "react";
+import { UseEffect } from "./effect";
+import { UseReducer } from "./useReducer";
 
 export const KanbanScreen = () => {
-  return <h1>Kanban</h1>;
+  return (
+    <div>
+      <ul>
+        <li>
+          <UseEffect />
+        </li>
+        <li>
+          <UseReducer />
+        </li>
+      </ul>
+    </div>
+  );
 };
