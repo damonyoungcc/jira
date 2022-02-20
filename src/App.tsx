@@ -4,6 +4,7 @@ import { AuthenticatedApp } from "authenticated-app";
 import { UnauthenticatedApp } from "unauthenticated-app";
 import { ErrorBoundary } from "components/error-boundary";
 import { FullPageErrorFallback } from "components/lib";
+import Lazy from "a-demo/lazy";
 import "./App.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <ErrorBoundary fallbackRender={FullPageErrorFallback}>
         {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
       </ErrorBoundary>
+      <Lazy />
     </div>
   );
 }
