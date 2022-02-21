@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-export default function App() {
+export function App() {
   const [callback, setCallback] = useState(() => () => {
     console.log("I am lazy");
   });

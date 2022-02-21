@@ -1,17 +1,12 @@
-import { UseEffect } from "./effect";
-import { UseReducer } from "./useReducer";
+import Demo from "../../a-demo";
+import { useDocumentTitle } from "../../a-demo/ref";
 
 export const KanbanScreen = () => {
+  useDocumentTitle("看板", false);
   return (
     <div>
-      <ul>
-        <li>
-          <UseEffect />
-        </li>
-        <li>
-          <UseReducer />
-        </li>
-      </ul>
+      <h1>Kanban</h1>
+      <Demo />
     </div>
   );
 };
