@@ -5,6 +5,7 @@ export const useDocumentTitle = (
   keepOnUnmount: boolean = true
 ) => {
   console.log(document.title);
+  // 这里存在ref后，无论document.title怎么变化，ref的current都不会更改
   const oldTitle = useRef(document.title).current;
   console.log(oldTitle);
 

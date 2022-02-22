@@ -2,17 +2,18 @@ import { UseEffect } from "./effect";
 import { UseRef } from "./ref";
 import { App, Refapp } from "./lazy";
 import { UseReducer } from "./useReducer";
+import { Loop } from "./loop";
 
 const Demo = () => {
   return (
     <ul>
-      {/*       <li>
+      <li>
         <UseEffect />
-      </li> */}
+      </li>
       <li>
         <UseRef />
       </li>
-      {/*       <li>
+      <li>
         <UseReducer />
       </li>
       <li>
@@ -20,7 +21,10 @@ const Demo = () => {
       </li>
       <li>
         <Refapp />
-      </li> */}
+      </li>
+      <li>
+        <Loop />
+      </li>
       <div style={{ height: "300px" }}></div>
     </ul>
   );
