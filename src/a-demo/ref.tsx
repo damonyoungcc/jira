@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 export const useDocumentTitle = (
   title: string,
@@ -40,6 +40,99 @@ export const UseRef = () => {
   return (
     <div>
       <button onClick={() => setCount(count + 1)}>+1</button>
+    </div>
+  );
+};
+
+export const UseRef1 = () => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      console.log(count);
+    }, 3000);
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [count]);
+
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}>+1</button>
+    </div>
+  );
+};
+
+export const UseRef2 = () => {
+  const [count, setCount] = useState(0);
+  const countRef = useRef(count);
+  countRef.current = count;
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      console.log(countRef.current);
+    }, 3000);
+    return () => {
+      clearTimeout(timerId);
+    };
+  });
+
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}>+1</button>
+    </div>
+  );
+};
+
+export const UseState1 = () => {
+  const [source, setSource] = useState([
+    {
+      type: "done",
+      value: 1,
+    },
+    {
+      type: "doing",
+      value: 2,
+    },
+  ]);
+  const doneSource = useMemo(
+    () => source.filter((item) => item.type === "done"),
+    [source]
+  );
+  const doingSource = useMemo(
+    () => source.filter((item) => item.type === "doing"),
+    [source]
+  );
+
+  console.log(doneSource);
+  console.log(doingSource);
+
+  return (
+    <div>
+      <button
+        onClick={() =>
+          setSource([
+            {
+              type: "done",
+              value: 1,
+            },
+            {
+              type: "doing",
+              value: 2,
+            },
+            {
+              type: "done",
+              value: 3,
+            },
+            {
+              type: "doing",
+              value: 4,
+            },
+          ])
+        }
+      >
+        set source
+      </button>
     </div>
   );
 };

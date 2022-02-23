@@ -1,30 +1,30 @@
 import { UseEffect } from "./effect";
-import { UseRef } from "./ref";
-import { App, Refapp } from "./lazy";
+import { UseRef, UseRef1, UseRef2, UseState1 } from "./ref";
+import { App2, Refapp } from "./lazy";
 import { UseReducer } from "./useReducer";
 import { Loop } from "./loop";
 
 const Demo = () => {
   return (
     <ul>
-      <li>
+      {/*       <li>
         <UseEffect />
-      </li>
+      </li> */}
       <li>
-        <UseRef />
+        <UseState1 />
       </li>
-      <li>
+      {/*       <li>
         <UseReducer />
-      </li>
-      <li>
-        <App />
-      </li>
-      <li>
+      </li> */}
+      {/*       <li>
+        <App2 />
+      </li> */}
+      {/*       <li>
         <Refapp />
       </li>
       <li>
         <Loop />
-      </li>
+      </li> */}
       <div style={{ height: "300px" }}></div>
     </ul>
   );
